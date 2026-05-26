@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Header() {
@@ -23,11 +24,16 @@ export default function Header() {
 
   return (
     <>
-      <header className={`header${hidden ? " hidden" : ""}`}>
+      <header className={`header${hidden ? " hidden" : ""}${scrolled ? " scrolled" : ""}`}>
         <div className="header-inner">
           <Link href="/" className="header-logo">
-            <span className="logo-icon">AC</span>
-            Activated Carbon
+            <Image
+              src="/images/logo.png"
+              alt="Activated Carbon Agents"
+              width={180}
+              height={60}
+              priority
+            />
           </Link>
 
           <nav className="header-nav">
@@ -39,7 +45,7 @@ export default function Header() {
 
           <div className="header-cta">
             <Link href="/#contact" className="btn btn-primary">
-              Get a Quote
+              Contact Us
             </Link>
           </div>
 
@@ -62,7 +68,7 @@ export default function Header() {
           <Link href="/about">About</Link>
           <Link href="/resources">Resources</Link>
           <Link href="/#contact" className="btn btn-primary" style={{ textAlign: "center" }}>
-            Get a Quote
+            Contact Us
           </Link>
         </div>
       )}
