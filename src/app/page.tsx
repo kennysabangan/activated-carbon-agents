@@ -9,20 +9,20 @@ export default function Home() {
     <main>
       <Header />
 
-      {/* Hero */}
-      <section className="hero">
-        <div className="hero-inner">
-          <div className="hero-bg" />
-          <div className="hero-content">
-            <h1>Quality Activated Carbon</h1>
-            <p className="subtitle">Directly from Manufacturers</p>
-            <p className="sub-heading">
-              Manufacturer direct pricing backed by decades of experience and technical support.
-            </p>
-            <Link href="/#contact" className="contact-btn">
-              Contact Us
-            </Link>
-          </div>
+      {/* Hero — full bleed bg */}
+      <section className="hero-section">
+        <div className="hero-bg-wrapper">
+          <img src="/images/hero-bg.jpeg" alt="" aria-hidden="true" />
+        </div>
+        <div className="hero-overlay">
+          <h1>Quality Activated Carbon</h1>
+          <p className="subtitle">Directly from Manufacturers</p>
+          <p className="sub-heading">
+            Manufacturer direct pricing backed by decades of experience and technical support.
+          </p>
+          <Link href="/#contact" className="contact-btn">
+            Contact Us
+          </Link>
         </div>
       </section>
 
@@ -34,16 +34,15 @@ export default function Home() {
           </div>
           <div className="about-intro-right">
             <p>
-              With decades of experience in the activated carbon industry, we provide high-quality products at manufacturer direct pricing. Our team is dedicated to understanding your specific needs and delivering solutions that exceed expectations.
+              Activated Carbon Agents has led the activated carbon market for decades, sourcing the highest-quality products at the best prices. With deep industry expertise, we know which manufacturers deliver superior carbon—ensuring full transparency, expert support, and unmatched value every step of the way.
             </p>
           </div>
         </div>
       </section>
 
-      {/* About Us / Mission */}
+      {/* About Us / Mission — 3 columns */}
       <section className="mission">
         <div className="mission-inner">
-          {/* Left: Text */}
           <div className="mission-text">
             <h1>ABOUT US</h1>
             <p className="sub-heading">
@@ -53,11 +52,7 @@ export default function Home() {
               Contact Us
             </Link>
           </div>
-
-          {/* Middle: Carbon image */}
           <div className="mission-image-mid" />
-
-          {/* Right: Water image */}
           <div className="mission-image-right" />
         </div>
       </section>
@@ -65,16 +60,21 @@ export default function Home() {
       {/* Image Row (desktop only) */}
       <section className="image-row">
         <div className="image-row-inner">
-          <Image src="/images/svg-accent.svg" alt="Accent" width={400} height={300} />
-          <Image src="/images/blue-logo.png" alt="Blue Logo" width={400} height={300} />
-          <Image src="/images/dark-image.webp" alt="Dark Image" width={400} height={300} />
+          <div>
+            <Image src="/images/svg-accent.svg" alt="Accent" width={400} height={300} />
+          </div>
+          <div>
+            <Image src="/images/blue-logo.png" alt="Blue Logo" width={400} height={300} />
+          </div>
+          <div>
+            <Image src="/images/dark-image.webp" alt="Dark Image" width={400} height={300} />
+          </div>
         </div>
       </section>
 
       {/* Global Sourcing */}
       <section className="global-sourcing">
         <div className="global-sourcing-inner">
-          {/* Left: Text */}
           <div className="global-sourcing-text">
             <Image
               src="/images/globe.png"
@@ -86,14 +86,12 @@ export default function Home() {
             <h1>GLOBAL SOURCING,</h1>
             <h1>UNMATCHED QUALITY</h1>
             <p className="sub-heading">
-              We source activated carbon from the best manufacturers around the world, ensuring every product meets the highest quality standards. Our global network allows us to offer competitive pricing without compromising on quality.
+              We have searched the world to find the best manufacturing facilities in wood, coal and coconut shell base products. These manufacturers have proven over the years to be reliable and produce a consistently high quality product. We match the right activated carbon for an application with the best manufacturer.
             </p>
             <Link href="/#contact" className="contact-btn">
               Contact Us
             </Link>
           </div>
-
-          {/* Right: Background image */}
           <div className="global-sourcing-image" />
         </div>
       </section>
@@ -103,7 +101,7 @@ export default function Home() {
         <div className="founder-inner">
           <div className="founder-border">
             <div className="founder-content">
-              <h1>ABOUT THE FOUNDER & CEO</h1>
+              <h1>ABOUT THE FOUNDER &amp; CEO</h1>
               <h2>
                 Kimberly Walsh has over three decades of experience in the activated carbon market, both domestically and internationally. Her career began in 1988 with Atochem NA, a manufacturer of sub-bituminous coal in Pryor, OK, which was later acquired by Norit/Cabot.
               </h2>
