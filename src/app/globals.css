@@ -808,6 +808,11 @@ input, textarea, select {
   max-width: 640px;
   margin: 0 auto;
   text-align: center;
+  background: var(--white, #fff);
+  border-radius: 16px;
+  padding: 48px 40px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
 }
 
 .contact-card h2 {
@@ -853,20 +858,20 @@ input, textarea, select {
 
 .form-group input,
 .form-group textarea {
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--border);
-  padding: 12px 0;
-  font-size: 16px;
+  background: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 15px;
   color: var(--text-primary);
   outline: none;
   transition: border-color 0.2s;
-  border-radius: 0;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200, 149, 108, 0.15);
 }
 
 .form-group textarea {
