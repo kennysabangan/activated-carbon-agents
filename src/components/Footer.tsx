@@ -3,33 +3,45 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-inner">
-        {/* Row 1 */}
-        <div className="footer-row1">
-          {/* Contact Info */}
-          <div className="footer-col">
-            <h3>Contact Us</h3>
-            <ul>
-              <li>Activated Carbon Agents</li>
-              <li>17512 Griffin Lane, Huntington Beach CA 92647</li>
-              <li><a href="tel:8559343376">(855) 934-3376</a></li>
-              <li><a href="mailto:kim@activatedcarbonagents.com">kim@activatedcarbonagents.com</a></li>
-            </ul>
+      <div className="container">
+        <div className="footer-grid">
+          <div className="footer-brand">
+            <div className="header-logo">
+              <span className="logo-icon">AC</span>
+              Activated Carbon
+            </div>
+            <p className="footer-tagline">
+              Quality activated carbon, manufacturer direct.
+            </p>
           </div>
 
-          {/* Legal */}
-          <div className="footer-col">
-            <h3>Legal</h3>
-            <div className="footer-legal">
+          <div>
+            <div className="footer-links">
+              <Link href="/">Home</Link>
+              <Link href="/about">About</Link>
+              <Link href="/resources">Resources</Link>
               <Link href="/privacy-policy">Privacy Policy</Link>
-              <Link href="/terms-and-conditions">Terms & Conditions</Link>
+              <Link href="/terms-and-conditions">Terms &amp; Conditions</Link>
             </div>
+          </div>
+
+          <div className="footer-contact">
+            <p>123 Industrial Way, Suite 100</p>
+            <p>
+              <a href="tel:+18005551234">(800) 555-1234</a>
+            </p>
+            <p>
+              <a href="mailto:info@activatedcarbonagents.com">
+                info@activatedcarbonagents.com
+              </a>
+            </p>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="footer-copyright">
-          <p>Activated Carbon Agents &copy; 2026</p>
+        <hr className="footer-divider" />
+
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} Activated Carbon Agents</p>
           <p>All Rights Reserved</p>
         </div>
       </div>
