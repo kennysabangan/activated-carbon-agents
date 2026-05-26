@@ -8,64 +8,62 @@ export const metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <main className="min-h-screen">
+    <main>
       <Header />
 
-      <article className="max-w-[800px] mx-auto px-4 py-16">
-        <h1 className="font-headline font-bold text-[36px] mb-8">Privacy Policy</h1>
+      <article className="article-content">
+        <h1>Privacy Policy</h1>
 
-        <div className="font-content text-[16px] leading-relaxed space-y-6">
-          <p><strong>Effective Date:</strong> January 1, 2025</p>
+        <p><strong>Effective Date:</strong> January 1, 2025</p>
 
-          <h2 className="font-headline font-bold text-[24px] mt-8 mb-4">Introduction</h2>
-          <p>
-            Activated Carbon Agents (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) respects your privacy and is committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.
-          </p>
+        <h2>Introduction</h2>
+        <p>
+          Activated Carbon Agents (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) respects your privacy and is committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website.
+        </p>
 
-          <h2 className="font-headline font-bold text-[24px] mt-8 mb-4">Information We Collect</h2>
-          <p>We may collect information about you in a variety of ways:</p>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li><strong>Personal Data:</strong> Name, email address, phone number, and other contact information you voluntarily provide through our contact forms.</li>
-            <li><strong>Usage Data:</strong> Information about how you use our website, including IP address, browser type, pages visited, and time spent on pages.</li>
-            <li><strong>Cookies:</strong> We use cookies and similar tracking technologies to enhance your experience on our site.</li>
-          </ul>
+        <h2>Information We Collect</h2>
+        <p>We may collect information about you in a variety of ways:</p>
+        <ul>
+          <li><strong>Personal Data:</strong> Name, email address, phone number, and other contact information you voluntarily provide through our contact forms.</li>
+          <li><strong>Usage Data:</strong> Information about how you use our website, including IP address, browser type, pages visited, and time spent on pages.</li>
+          <li><strong>Cookies:</strong> We use cookies and similar tracking technologies to enhance your experience on our site.</li>
+        </ul>
 
-          <h2 className="font-headline font-bold text-[24px] mt-8 mb-4">How We Use Your Information</h2>
-          <p>We use the information we collect to:</p>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>Respond to your inquiries and provide customer service</li>
-            <li>Process orders and deliver products</li>
-            <li>Send you information about our products and services</li>
-            <li>Improve our website and services</li>
-            <li>Comply with legal obligations</li>
-          </ul>
+        <h2>How We Use Your Information</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+          <li>Respond to your inquiries and provide customer service</li>
+          <li>Process orders and deliver products</li>
+          <li>Send you information about our products and services</li>
+          <li>Improve our website and services</li>
+          <li>Comply with legal obligations</li>
+        </ul>
 
-          <h2 className="font-headline font-bold text-[24px] mt-8 mb-4">Information Sharing</h2>
-          <p>
-            We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted partners who assist us in operating our website and conducting our business, provided they agree to keep this information confidential.
-          </p>
+        <h2>Information Sharing</h2>
+        <p>
+          We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted partners who assist us in operating our website and conducting our business, provided they agree to keep this information confidential.
+        </p>
 
-          <h2 className="font-headline font-bold text-[24px] mt-8 mb-4">Data Security</h2>
-          <p>
-            We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
-          </p>
+        <h2>Data Security</h2>
+        <p>
+          We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
+        </p>
 
-          <h2 className="font-headline font-bold text-[24px] mt-8 mb-4">Your Rights</h2>
-          <p>
-            Depending on your location, you may have certain rights regarding your personal information, including the right to access, correct, or delete your data. To exercise these rights, please contact us using the information below.
-          </p>
+        <h2>Your Rights</h2>
+        <p>
+          Depending on your location, you may have certain rights regarding your personal information, including the right to access, correct, or delete your data. To exercise these rights, please contact us using the information below.
+        </p>
 
-          <h2 className="font-headline font-bold text-[24px] mt-8 mb-4">Contact Us</h2>
-          <p>
-            If you have questions about this Privacy Policy, please contact us at:
-          </p>
-          <p>
-            Activated Carbon Agents<br />
-            17512 Griffin Lane, Huntington Beach CA 92647<br />
-            Phone: (855) 934-3376<br />
-            Email: kim@activatedcarbonagents.com
-          </p>
-        </div>
+        <h2>Contact Us</h2>
+        <p>
+          If you have questions about this Privacy Policy, please contact us at:
+        </p>
+        <p>
+          Activated Carbon Agents<br />
+          17512 Griffin Lane, Huntington Beach CA 92647<br />
+          Phone: (855) 934-3376<br />
+          Email: kim@activatedcarbonagents.com
+        </p>
       </article>
 
       <Footer />
