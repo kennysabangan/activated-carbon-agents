@@ -1,90 +1,50 @@
-import type { Metadata } from "next";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Resources | Activated Carbon Agents",
-  description:
-    "Explore resources and insights about activated carbon — learn about types, production, applications, and selecting the right carbon for your needs.",
-  keywords: [
-    "activated carbon resources",
-    "what is activated carbon",
-    "activated carbon types",
-    "activated carbon blog",
-    "GAC",
-    "PAC",
-    "pelletized carbon",
-  ],
-  openGraph: {
-    title: "Resources | Activated Carbon Agents",
-    description:
-      "Explore resources and insights about activated carbon.",
-    url: "https://activatedcarbonagents.com/resources",
-    type: "website",
-  },
+export const metadata = {
+  title: "Resources - Activated Carbon Agents",
+  description: "Educational resources and articles about activated carbon, its uses, and industry insights.",
 };
-
-const posts = [
-  {
-    title: "What is Activated Carbon?",
-    excerpt:
-      "Activated carbon is a highly porous material derived from organic sources such as coconut shells, wood, or coal. Learn about its structure, types, production methods, and benefits across industries.",
-    category: "Activated Carbon",
-    date: "January 15, 2025",
-    readTime: "4 min read",
-    slug: "/resources/b/what-is-activated-carbon",
-  },
-];
 
 export default function ResourcesPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="bg-gradient-to-br from-primary-dark via-primary to-primary-light py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4">
-            Resources &amp; Insights
-          </h1>
-          <p className="text-xl text-green-100 max-w-2xl mx-auto">
-            Stay informed with the latest insights on activated carbon products, applications, and industry trends.
-          </p>
-        </div>
-      </section>
+    <main className="min-h-screen">
+      <Header />
 
-      {/* Blog Cards */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8">
-            {posts.map((post) => (
-              <Link
-                key={post.slug}
-                href={post.slug}
-                className="block bg-white border border-gray-200 rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
-              >
-                <div className="p-8">
-                  <div className="flex items-center gap-3 mb-4 text-sm text-gray-500">
-                    <span className="bg-primary/10 text-primary font-semibold px-3 py-1 rounded-full text-xs">
-                      {post.category}
-                    </span>
-                    <span>{post.date}</span>
-                    <span>·</span>
-                    <span>{post.readTime}</span>
-                  </div>
-                  <h2 className="text-2xl font-bold text-charcoal mb-3 hover:text-primary transition-colors">
-                    {post.title}
-                  </h2>
-                  <p className="text-gray-600 leading-relaxed">{post.excerpt}</p>
-                  <div className="mt-4 text-primary font-semibold flex items-center gap-1">
-                    Read More
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
+      <section className="max-w-[1200px] mx-auto px-4 py-16">
+        <h1 className="font-headline font-bold text-[32px] mb-4">
+          Resources
+        </h1>
+        <p className="font-headline text-[20px] leading-relaxed mb-12">
+          Explore our collection of articles and guides about activated carbon and its many applications.
+        </p>
+
+        {/* Blog Card */}
+        <div className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+          <div className="p-6">
+            <span className="font-form text-sm text-gray-500">Activated Carbon</span>
+            <span className="font-form text-sm text-gray-400 ml-4">January 15, 2025</span>
+            <span className="font-form text-sm text-gray-400 ml-4">4 min read</span>
+            <h2 className="font-headline font-bold text-[28px] mt-3 mb-3">
+              <Link href="/resources/b/what-is-activated-carbon" className="hover:text-linkBlue transition-colors">
+                What is Activated Carbon?
               </Link>
-            ))}
+            </h2>
+            <p className="font-content text-[16px] text-gray-700 leading-relaxed mb-4">
+              Activated carbon is a form of carbon processed to have small, low-volume pores that increase the surface area available for adsorption or chemical reactions. Learn about its types, manufacturing process, and wide-ranging applications.
+            </p>
+            <Link
+              href="/resources/b/what-is-activated-carbon"
+              className="inline-block font-headline text-linkBlue hover:underline"
+            >
+              Read More →
+            </Link>
           </div>
         </div>
       </section>
-    </>
+
+      <Footer />
+    </main>
   );
 }

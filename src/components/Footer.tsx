@@ -2,55 +2,45 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-charcoal-dark text-gray-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Company Info */}
+    <footer className="bg-black w-full">
+      <div className="max-w-[1200px] mx-auto px-4 py-12">
+        {/* Row 1 */}
+        <div className="flex flex-col md:flex-row justify-between gap-8 mb-8">
+          {/* Contact Info */}
           <div>
-            <h3 className="text-white font-bold text-lg mb-4">
-              Activated Carbon Agents
-            </h3>
-            <p className="text-sm leading-relaxed">
-              17512 Griffin Lane<br />
-              Huntington Beach, CA 92647
-            </p>
+            <h3 className="text-white font-bold text-lg mb-4">Contact Us</h3>
+            <ul className="list-disc list-inside space-y-2 text-footerGray text-base">
+              <li>Activated Carbon Agents</li>
+              <li>17512 Griffin Lane, Huntington Beach CA 92647</li>
+              <li><a href="tel:8559343376" className="hover:underline">(855) 934-3376</a></li>
+              <li><a href="mailto:kim@activatedcarbonagents.com" className="hover:underline">kim@activatedcarbonagents.com</a></li>
+            </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="text-white font-bold text-lg mb-4">Contact</h3>
-            <p className="text-sm mb-2">
-              <a href="tel:+18559343376" className="hover:text-white transition-colors">
-                (855) 934-3376
-              </a>
-            </p>
-            <p className="text-sm">
-              <a href="mailto:kim@activatedcarbonagents.com" className="hover:text-white transition-colors">
-                kim@activatedcarbonagents.com
-              </a>
-            </p>
-          </div>
-
-          {/* Links */}
+          {/* Legal */}
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Legal</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/privacy-policy" className="hover:text-white transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-and-conditions" className="hover:text-white transition-colors">
-                  Terms &amp; Conditions
-                </Link>
-              </li>
-            </ul>
+            <div className="flex gap-4">
+              <Link
+                href="/privacy-policy"
+                className="text-footerGray border-2 border-white rounded-[15px] px-4 py-2 hover:bg-white hover:text-black transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="/terms-and-conditions"
+                className="text-footerGray border-2 border-white rounded-[15px] px-4 py-2 hover:bg-white hover:text-black transition-colors"
+              >
+                Terms & Conditions
+              </Link>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
-          <p>&copy; 2026 Activated Carbon Agents. All rights reserved.</p>
+        {/* Row 2 */}
+        <div className="border-t border-gray-700 pt-6 text-center">
+          <p className="text-footerGray text-lg">Activated Carbon Agents © 2026</p>
+          <p className="text-footerGray text-lg">All Rights Reserved</p>
         </div>
       </div>
     </footer>

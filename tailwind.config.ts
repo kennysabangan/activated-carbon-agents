@@ -9,23 +9,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: "#1B5E20",
-          light: "#2E7D32",
-          dark: "#0D3B12",
-        },
-        charcoal: {
-          DEFAULT: "#333333",
-          light: "#4a4a4a",
-          dark: "#1a1a1a",
-        },
-        gold: {
-          DEFAULT: "#C8A951",
-          dark: "#B8860B",
-        },
+        navy: "#000321",
+        sage: "#596654",
+        burnt: "#933A16",
+        formBorder: "#ACACAC",
+        formLabel: "#2c3345",
+        formPlaceholder: "#8c8c8c",
+        footerGray: "#cbd5e0",
+        linkBlue: "#188bf6",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        headline: ['"Darker Grotesque"', 'sans-serif'],
+        content: ['"Manrope"', 'sans-serif'],
+        form: ['"Inter"', 'sans-serif'],
+        sans: ['"Manrope"', 'system-ui', 'sans-serif'],
       },
     },
   },

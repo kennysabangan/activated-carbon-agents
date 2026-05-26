@@ -1,140 +1,177 @@
-import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 
-export const metadata: Metadata = {
-  title: "Activated Carbon Agents | Quality Activated Carbon Directly from Manufacturers",
-  description:
-    "Manufacturer direct pricing on quality activated carbon backed by decades of experience and technical support. Global sourcing, unmatched quality.",
-  keywords: [
-    "activated carbon",
-    "activated carbon suppliers",
-    "wholesale activated carbon",
-    "granular activated carbon",
-    "powdered activated carbon",
-    "coconut shell activated carbon",
-    "manufacturer direct pricing",
-  ],
-  openGraph: {
-    title: "Activated Carbon Agents | Quality Activated Carbon",
-    description:
-      "Manufacturer direct pricing backed by decades of experience and technical support.",
-    url: "https://activatedcarbonagents.com",
-    siteName: "Activated Carbon Agents",
-    type: "website",
-  },
-};
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <>
-      {/* Hero Section */}
-      <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background gradient simulating dark industrial image */}
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-gray-900 via-charcoal-dark to-gray-800"
-          style={{
-            backgroundImage:
-              "linear-gradient(135deg, rgba(27,94,32,0.3) 0%, rgba(26,26,26,0.9) 50%, rgba(51,51,51,0.8) 100%)",
-          }}
-        />
-        {/* Overlay pattern */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-          }}
-        />
+    <main className="min-h-screen">
+      <Header />
 
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
+      {/* Section 2: Hero */}
+      <section className="relative w-full min-h-[500px] flex items-center justify-center py-16 md:py-24">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url(/images/hero-bg.jpeg)", opacity: 0.5 }}
+        />
+        <div className="relative z-10 max-w-[1170px] mx-auto text-center px-4">
+          <h1 className="font-headline font-bold text-[32px] md:text-[48px] mb-2">
             Quality Activated Carbon
           </h1>
-          <p className="text-2xl sm:text-3xl text-gold font-semibold mb-6">
+          <p className="font-headline text-[24px] md:text-[32px] mb-6">
             Directly from Manufacturers
           </p>
-          <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="font-headline text-[20px] md:text-[24px] mb-8 max-w-3xl mx-auto">
             Manufacturer direct pricing backed by decades of experience and technical support.
           </p>
           <Link
             href="/#contact"
-            className="inline-block bg-gold hover:bg-gold-dark text-white px-8 py-4 rounded-md text-lg font-semibold transition-all hover:scale-105 shadow-lg"
+            className="inline-block bg-black text-white px-8 py-3 rounded-full font-headline text-lg animate-slideInUp hover:bg-gray-800 transition-colors"
           >
             Contact Us
           </Link>
         </div>
       </section>
 
-      {/* Intro Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-charcoal mb-6">
-            Welcome to Activated Carbon Agents
+      {/* Section 3: Activated Carbon Agents intro */}
+      <section className="w-full border-t border-black py-12 md:py-16">
+        <div className="max-w-[1200px] mx-auto px-4 hidden md:flex gap-12">
+          <div className="w-1/2">
+            <h2 className="font-headline font-bold text-[32px]">
+              Activated Carbon Agents
+            </h2>
+          </div>
+          <div className="w-1/2">
+            <p className="font-headline text-[24px] leading-relaxed">
+              With decades of experience in the activated carbon industry, we provide high-quality products at manufacturer direct pricing. Our team is dedicated to understanding your specific needs and delivering solutions that exceed expectations.
+            </p>
+          </div>
+        </div>
+        {/* Mobile fallback */}
+        <div className="md:hidden max-w-[1200px] mx-auto px-4">
+          <h2 className="font-headline font-bold text-[28px] mb-4">
+            Activated Carbon Agents
           </h2>
-          <p className="text-gray-600 text-lg leading-relaxed mb-6">
-            At Activated Carbon Agents, we specialize in sourcing the highest quality activated carbon products directly from trusted manufacturers worldwide. With decades of combined experience in the activated carbon industry, our team is dedicated to providing transparent pricing, expert technical support, and reliable supply chain management for businesses across all industries.
-          </p>
-          <p className="text-gray-600 text-lg leading-relaxed">
-            Whether you need granular activated carbon (GAC), powdered activated carbon (PAC), or pelletized carbon, we have the knowledge and the network to deliver the right product at the right price. Our commitment to quality and customer satisfaction sets us apart in the industry.
+          <p className="font-headline text-[20px] leading-relaxed">
+            With decades of experience in the activated carbon industry, we provide high-quality products at manufacturer direct pricing.
           </p>
         </div>
       </section>
 
-      {/* About Us / Mission Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-charcoal mb-6">About Us</h2>
-          <p className="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
-            Our mission at Activated Carbon Agents is simple: to provide high-quality products and outstanding customer service at manufacturer direct pricing. Our team goes above and beyond to cater to each client&apos;s specific needs. We understand that every application is unique, and we work closely with our customers to ensure they receive the best activated carbon solution for their requirements.
-          </p>
-        </div>
-      </section>
-
-      {/* Global Sourcing Section */}
-      <section className="py-20 bg-charcoal-dark text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 tracking-wide uppercase">
-            Global Sourcing, Unmatched Quality
-          </h2>
-          <p className="text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">
-            We search the globe for the best manufacturing facilities in wood, coal, and coconut shell base activated carbon products. Our extensive network of vetted manufacturers ensures that every product we deliver meets the highest standards of quality and performance. From Southeast Asia to Europe, we partner with facilities that share our commitment to excellence.
-          </p>
-        </div>
-      </section>
-
-      {/* Founder Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-charcoal mb-10">
-            About the Founder &amp; CEO
-          </h2>
-          <div className="bg-gray-50 rounded-lg p-8 md:p-10">
-            {/* Founder placeholder */}
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="w-40 h-40 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center flex-shrink-0">
-                <span className="text-white text-4xl font-bold">KW</span>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-charcoal mb-2">Kimberly Walsh</h3>
-                <p className="text-gold font-semibold mb-4">Founder &amp; CEO</p>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  Kimberly Walsh brings over three decades of experience in the activated carbon industry. Her journey began in 1988 with Atochem NA, where she developed a deep understanding of activated carbon products and their applications across various industries.
-                </p>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  In 1998, Kimberly founded Carbon Resources, which earned a place on the Inc. 5000 list twice — a testament to her business acumen and dedication to the industry. After 16 years of successful ownership, she launched Activated Carbon Agents to continue providing manufacturer direct pricing with an unwavering commitment to quality.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  Kimberly has traveled extensively across the globe to personally qualify manufacturers and ensure that only the highest quality products reach her clients. Her hands-on approach and industry expertise make Activated Carbon Agents a trusted partner for businesses worldwide.
-                </p>
-              </div>
+      {/* Section 4: About Us */}
+      <section className="w-full py-12 md:py-16">
+        <div className="max-w-[1200px] mx-auto px-4">
+          <div className="flex flex-col md:flex-row">
+            {/* Left: Text */}
+            <div className="w-full md:w-1/3 py-8 md:py-12 md:pr-8">
+              <h1 className="font-headline font-bold text-[32px] mb-6">
+                ABOUT US
+              </h1>
+              <p className="font-headline text-[24px] leading-relaxed mb-8">
+                Our mission at Activated Carbon Agents is simple: to provide high-quality products and outstanding customer service at manufacturer direct pricing. Our team goes above and beyond to cater to each client&apos;s specific needs. For more information or general inquiries, get in touch today.
+              </p>
+              <Link
+                href="/#contact"
+                className="inline-block font-headline text-lg border-[3px] border-black border-b-4 px-6 py-2 hover:bg-black hover:text-white transition-colors"
+              >
+                Contact Us
+              </Link>
             </div>
+
+            {/* Middle: Carbon image (desktop only) */}
+            <div
+              className="hidden md:block w-1/3 bg-cover bg-center"
+              style={{ backgroundImage: "url(/images/about-carbon.jpeg)" }}
+            />
+
+            {/* Right: Water image */}
+            <div
+              className="hidden md:block w-1/3 bg-cover bg-center"
+              style={{ backgroundImage: "url(/images/about-water.webp)" }}
+            />
           </div>
         </div>
       </section>
 
-      {/* Contact Form */}
+      {/* Section 5: Carbon images row (desktop only) */}
+      <section className="hidden md:block w-full py-8">
+        <div className="max-w-[1200px] mx-auto px-4 flex gap-4">
+          <div className="w-1/3 animate-zoomIn">
+            <Image src="/images/svg-accent.svg" alt="Accent" width={400} height={300} className="w-full h-auto" />
+          </div>
+          <div className="w-1/3 animate-zoomIn">
+            <Image src="/images/blue-logo.png" alt="Blue Logo" width={400} height={300} className="w-full h-auto" />
+          </div>
+          <div className="w-1/3 animate-zoomIn">
+            <Image src="/images/dark-image.webp" alt="Dark Image" width={400} height={300} className="w-full h-auto" />
+          </div>
+        </div>
+      </section>
+
+      {/* Section 6: Global Sourcing */}
+      <section className="w-full py-12 md:py-16">
+        <div className="max-w-[1200px] mx-auto px-4 flex flex-col md:flex-row gap-8 items-center">
+          {/* Left: Text */}
+          <div className="w-full md:w-1/2">
+            <Image
+              src="/images/globe.png"
+              alt="Globe"
+              width={120}
+              height={120}
+              className="mb-6 animate-fadeInUp"
+            />
+            <h1 className="font-headline font-bold text-[32px] mb-2">
+              GLOBAL SOURCING,
+            </h1>
+            <h1 className="font-headline font-bold text-[32px] mb-6">
+              UNMATCHED QUALITY
+            </h1>
+            <p className="font-headline text-[24px] leading-relaxed mb-8">
+              We source activated carbon from the best manufacturers around the world, ensuring every product meets the highest quality standards. Our global network allows us to offer competitive pricing without compromising on quality.
+            </p>
+            <Link
+              href="/#contact"
+              className="inline-block bg-black text-white px-8 py-3 rounded-full font-headline text-lg hover:bg-gray-800 transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
+
+          {/* Right: Background image */}
+          <div className="w-full md:w-1/2">
+            <div
+              className="w-full h-[400px] bg-cover bg-center rounded-[8px]"
+              style={{ backgroundImage: "url(/images/about-carbon.jpeg)" }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Section 7: About the Founder & CEO */}
+      <section className="w-full py-12 md:py-16">
+        <div className="mx-4 md:mx-[60px] py-5 px-4 md:px-6 border-2 border-black">
+          <div className="md:w-[56.9%]">
+            <h1 className="font-headline font-bold text-[32px] mb-6">
+              ABOUT THE FOUNDER & CEO
+            </h1>
+            <h2 className="font-headline text-[24px] leading-relaxed mb-4" style={{ color: "#000321" }}>
+              Kimberly Walsh has over three decades of experience in the activated carbon market, both domestically and internationally. Her career began in 1988 with Atochem NA, a manufacturer of sub-bituminous coal in Pryor, OK, which was later acquired by Norit/Cabot.
+            </h2>
+            <p className="font-headline text-[24px] leading-relaxed mb-4">
+              In 1998, she founded Carbon Resources, which was recognized twice on the Forbes 5000 list of fastest-growing companies. Over 16 years of ownership, she traveled internationally to qualify manufacturers that met the stringent quality control standards she implemented. Her team-focused approach has always centered on delivering exceptional customer service by proactively anticipating client needs.
+            </p>
+            <p className="font-headline text-[24px] leading-relaxed">
+              Beyond her professional achievements, Kimberly enjoys spending time with her husband and family, sailing, traveling, and supporting several local and international non-profits.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 8: Contact Form */}
       <ContactForm />
-    </>
+
+      <Footer />
+    </main>
   );
 }

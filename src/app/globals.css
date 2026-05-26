@@ -1,13 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300;400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --navy: #000321;
+  --sage: #596654;
+  --burnt: #933A16;
+  --form-border: #ACACAC;
+  --form-label: #2c3345;
+  --form-placeholder: #8c8c8c;
+  --footer-gray: #cbd5e0;
+  --link-blue: #188bf6;
+}
 
-html {
-  scroll-behavior: smooth;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Manrope', sans-serif;
+  color: #000;
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.animate-slideInUp {
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-zoomIn {
+  animation: zoomIn 0.6s ease-out forwards;
 }
