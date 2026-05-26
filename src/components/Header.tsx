@@ -21,7 +21,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+        <nav className="desktop-nav">
           <ul className="nav-links">
             <li><Link href="/">Home</Link></li>
             <li><Link href="/about">Activated Carbon</Link></li>
