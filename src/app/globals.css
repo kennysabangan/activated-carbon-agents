@@ -1377,26 +1377,10 @@ input, textarea, select {
   flex: 1;
   max-width: 280px;
 }
-.institution-name {
-  font-family: var(--headlinefont);
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: 2px;
-}
-.institution-sub {
-  font-family: var(--headlinefont);
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-.institution-tagline {
-  font-family: var(--headlinefont);
-  font-size: 12px;
-  font-style: italic;
-  color: var(--text-muted);
-  margin-top: 4px;
+.institution-logo img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
 }
 .institution-divider {
   width: 1px;
@@ -1412,8 +1396,5 @@ input, textarea, select {
   .institution-divider {
     width: 60px;
     height: 1px;
-  }
-  .institution-name {
-    font-size: 24px;
   }
 }

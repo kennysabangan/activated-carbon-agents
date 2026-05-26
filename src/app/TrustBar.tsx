@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function TrustBar() {
   const items = [
     {
@@ -54,21 +56,15 @@ export default function TrustBar() {
         <div className="container">
           <div className="institutions-grid">
             <div className="institution-logo fade-in">
-              <div className="institution-name">ASTM</div>
-              <div className="institution-sub">International</div>
-              <div className="institution-tagline">Helping our world work better.</div>
+              <Image src="/images/astm-logo.svg" alt="ASTM International" width={200} height={80} />
             </div>
             <div className="institution-divider" />
             <div className="institution-logo fade-in">
-              <div className="institution-name">NSF</div>
-              <div className="institution-sub">National Sanitation Foundation</div>
-              <div className="institution-sub">International</div>
+              <Image src="/images/nsf-logo.svg" alt="NSF International" width={220} height={80} />
             </div>
             <div className="institution-divider" />
             <div className="institution-logo fade-in">
-              <div className="institution-name">AWWA</div>
-              <div className="institution-sub">American Water Works Association</div>
-              <div className="institution-tagline">Dedicated to the World&apos;s Most Important Resource.</div>
+              <Image src="/images/awwa-logo.svg" alt="American Water Works Association" width={260} height={80} />
             </div>
           </div>
         </div>
