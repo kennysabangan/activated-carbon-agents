@@ -1358,3 +1358,62 @@ input, textarea, select {
   opacity: 1;
   transform: translateX(0);
 }
+
+/* ===== INSTITUTIONS BAR ===== */
+.institutions-bar {
+  background-color: #f3f2ee;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.institutions-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+}
+.institution-logo {
+  text-align: center;
+  flex: 1;
+  max-width: 280px;
+}
+.institution-name {
+  font-family: var(--headlinefont);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+}
+.institution-sub {
+  font-family: var(--headlinefont);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.institution-tagline {
+  font-family: var(--headlinefont);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.institution-divider {
+  width: 1px;
+  height: 60px;
+  background-color: var(--border);
+}
+
+@media screen and (max-width: 480px) {
+  .institutions-grid {
+    flex-direction: column;
+    gap: 24px;
+  }
+  .institution-divider {
+    width: 60px;
+    height: 1px;
+  }
+  .institution-name {
+    font-size: 24px;
+  }
+}
