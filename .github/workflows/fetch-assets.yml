@@ -1,7 +1,12 @@
 name: Fetch generated assets
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - claude/eloquent-ptolemy-h0nkyz
+    paths:
+      - scripts/fetch-assets.mjs
+      - .github/workflows/fetch-assets.yml
 
 permissions:
   contents: write
@@ -21,5 +26,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add public/images
-          git commit -m "Add Higgsfield-generated site imagery (optimized webp)"
+          git commit -m "Add Higgsfield-generated site imagery (optimized webp) [skip ci]"
           git push
