@@ -6,7 +6,7 @@ export default function AboutSection() {
       <div className="container">
         <div className="about-grid">
           <div className="about-text fade-in-left">
-            <p className="overline">ABOUT US</p>
+            <p className="overline">About Us</p>
             <h2 className="headline-lg">
               Decades of Expertise in Activated Carbon
             </h2>
@@ -26,16 +26,23 @@ export default function AboutSection() {
             </p>
             <a href="#contact" className="btn btn-primary">
               Contact Us
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
             </a>
           </div>
           <div className="about-image-wrapper fade-in-right">
-            <Image
-              src="/images/about-carbon.jpeg"
-              alt="Activated carbon production"
-              width={540}
-              height={400}
-              style={{ width: "100%", height: "auto" }}
-            />
+            <div className="image-frame">
+              <Image
+                src="/images/about-carbon-pour.webp"
+                alt="Activated carbon pellets in motion"
+                width={700}
+                height={525}
+                sizes="(max-width: 768px) 100vw, 45vw"
+                style={{ width: "100%", height: "auto" }}
+              />
+            </div>
             <div className="about-badge">
               <div className="about-badge-title">Since 1988</div>
               <div className="about-badge-sub">Industry Leader</div>

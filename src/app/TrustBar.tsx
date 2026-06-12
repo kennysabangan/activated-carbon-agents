@@ -41,7 +41,11 @@ export default function TrustBar() {
         <div className="container">
           <div className="trust-bar-grid">
             {items.map((item, i) => (
-              <div key={i} className="trust-item fade-in">
+              <div
+                key={i}
+                className="trust-item fade-in"
+                style={{ transitionDelay: `${i * 120}ms` }}
+              >
                 <div className="trust-icon">{item.icon}</div>
                 <div className="trust-stat">{item.stat}</div>
                 <div className="trust-label">{item.label}</div>
@@ -59,11 +63,11 @@ export default function TrustBar() {
               <Image src="/images/astm-logo.svg" alt="ASTM International" width={200} height={80} />
             </div>
             <div className="institution-divider" />
-            <div className="institution-logo fade-in">
+            <div className="institution-logo fade-in" style={{ transitionDelay: "120ms" }}>
               <Image src="/images/nsf-logo.svg" alt="NSF International" width={220} height={80} />
             </div>
             <div className="institution-divider" />
-            <div className="institution-logo fade-in">
+            <div className="institution-logo fade-in" style={{ transitionDelay: "240ms" }}>
               <Image src="/images/awwa-logo.svg" alt="American Water Works Association" width={260} height={80} />
             </div>
           </div>
