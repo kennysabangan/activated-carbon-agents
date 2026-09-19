@@ -17,9 +17,11 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 // Internal lead notifications go to the agency inbox.
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "hello@scalesolving.com";
+// Must be on a domain verified in Resend, or the API rejects every
+// recipient other than the account owner.
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ??
-  "Activated Carbon Agents <onboarding@resend.dev>";
+  "Activated Carbon Agents <leads@activatedcarbonagents.com>";
 
 const FALLBACK_CONTACT =
   "Please email kim@activatedcarbonagents.com or call (855) 934-3376.";
@@ -81,7 +83,7 @@ export async function submitContact(
   }).format(new Date());
 
   try {
-    const { error } = await new Resend(apiKey).emails.send({
+    const { data, error } = await new Resend(apiKey).emails.send({
       from: FROM_EMAIL,
       to: [TO_EMAIL],
       // Replying in the inbox goes straight back to the enquirer.
@@ -92,6 +94,8 @@ export async function submitContact(
     });
 
     if (error) throw new Error(`${error.name}: ${error.message}`);
+    // Message id makes a delivery traceable in the Resend dashboard.
+    console.info(`Lead email queued (${data?.id}) for ${TO_EMAIL}`);
   } catch (err) {
     console.error("Contact form submission failed:", err);
     return {

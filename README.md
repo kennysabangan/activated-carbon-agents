@@ -28,26 +28,16 @@ environment in production:
 `.env.local` is git-ignored, so it never leaves your machine. A deploy needs
 the same three variables set in the hosting platform's env settings.
 
-### You must verify a domain before this works
+### Sender domain
 
-Resend's shared `onboarding@resend.dev` sender is **test-only**: it will
-deliver *only* to the email address that owns the Resend account, and
-rejects every other recipient with:
+`activatedcarbonagents.com` is verified in Resend, and `CONTACT_FROM_EMAIL`
+sends as `leads@activatedcarbonagents.com`. Keep the sender on a verified
+domain: Resend's shared `onboarding@resend.dev` address is test-only and
+delivers solely to the Resend account owner, rejecting every other recipient.
 
-> You can only send testing emails to your own email address. To send emails
-> to other recipients, please verify a domain at resend.com/domains, and
-> change the `from` address to an email using this domain.
-
-So before leads can reach `CONTACT_TO_EMAIL`:
-
-1. Verify a domain at <https://resend.com/domains> (add the DNS records it
-   gives you).
-2. Set `CONTACT_FROM_EMAIL` to an address on that domain, e.g.
-   `Activated Carbon Agents <leads@activatedcarbonagents.com>`.
-
-Until then the form shows the visitor a fallback pointing at the published
-phone number and email rather than reporting a success it cannot deliver.
-The underlying Resend error is logged server-side.
+If the form ever reports that it cannot send, check the server log — the
+Resend error is logged verbatim, and successful sends log the message id so
+the delivery can be traced in the Resend dashboard.
 
 ## Notes
 
