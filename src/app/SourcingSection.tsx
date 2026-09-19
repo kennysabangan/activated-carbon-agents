@@ -15,10 +15,10 @@ export default function SourcingSection() {
               width={58}
               height={58}
             />
-            <h2>
-              GLOBAL SOURCING,
+            <h2 className="section-title on-dark">
+              Global sourcing,
               <br />
-              UNMATCHED QUALITY
+              unmatched quality
             </h2>
             <p>
               We have searched the world to find the best manufacturing

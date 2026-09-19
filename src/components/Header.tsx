@@ -45,7 +45,7 @@ export default function Header() {
           </nav>
 
           <div className="header-cta">
-            <Link href="/#contact" className="btn btn-outline">
+            <Link href="/#contact" className="btn btn-primary">
               Contact Us
             </Link>
           </div>
@@ -70,7 +70,7 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link href="/#contact" className="btn btn-outline">
+          <Link href="/#contact" className="btn btn-primary">
             Contact Us
           </Link>
         </div>

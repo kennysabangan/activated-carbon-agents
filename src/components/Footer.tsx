@@ -5,10 +5,14 @@ export default function Footer() {
     <footer className="footer">
       <div className="container">
         <div className="footer-columns">
-          <div className="footer-col footer-col-contact">
+          <div className="footer-col">
+            <p className="footer-brand-name">Activated Carbon Agents</p>
+            <p>17512 Griffin Lane</p>
+            <p>Huntington Beach CA 92647</p>
+          </div>
+
+          <div className="footer-col">
             <h3>Contact Us</h3>
-            <p>Activated Carbon Agents</p>
-            <p>17512 Griffin Lane, Huntington Beach CA 92647</p>
             <a href="tel:8559343376">(855) 934-3376</a>
             <a href="mailto:kim@activatedcarbonagents.com">
               kim@activatedcarbonagents.com

@@ -2,7 +2,7 @@ export default function FounderSection() {
   return (
     <section className="section founder-section">
       <div className="container">
-        <h2 className="founder-heading section-title">ABOUT THE FOUNDER &amp; CEO</h2>
+        <h2 className="founder-heading section-title is-centered">About the Founder &amp; CEO</h2>
         <div className="founder-body fade-in">
           <p>
             Kimberly Walsh has over three decades of experience in the

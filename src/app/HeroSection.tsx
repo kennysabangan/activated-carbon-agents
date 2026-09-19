@@ -2,7 +2,8 @@ import Link from "next/link";
 
 /**
  * Hero and the "Activated Carbon Agents" intro row share a single full-bleed
- * photo, with a rule between them — as on the original site.
+ * photo, as on the original site. The intro sits in a translucent panel at
+ * the base of the image rather than beneath a rule.
  */
 export default function HeroSection() {
   return (
@@ -22,8 +23,6 @@ export default function HeroSection() {
             Contact Us
           </Link>
         </div>
-
-        <hr className="hero-divider" />
 
         <div className="hero-intro">
           <h2>Activated Carbon Agents</h2>

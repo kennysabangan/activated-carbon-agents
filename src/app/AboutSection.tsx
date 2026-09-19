@@ -13,7 +13,7 @@ export default function AboutSection() {
       <div className="container">
         <div className="about-grid">
           <div className="about-text fade-in-left">
-            <h2 className="section-title">ABOUT US</h2>
+            <h2 className="section-title">About us</h2>
             <p>
               Our mission at Activated Carbon Agents is simple: to provide
               high-quality products and outstanding customer service at
