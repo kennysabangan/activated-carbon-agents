@@ -10,8 +10,8 @@ export default function HeroSection() {
       <div className="hero-inner">
         <div className="hero-copy">
           <h1>
-            Quality Activated Carbon
-            <br />
+            Quality Activated Carbon{" "}
+            <br className="hero-br" />
             Directly from Manufacturers
           </h1>
           <p className="hero-sub">
