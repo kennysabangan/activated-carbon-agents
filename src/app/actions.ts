@@ -41,12 +41,14 @@ export async function submitContact(
     errors.email = "Please enter a valid email address.";
   if (!values.message) errors.message = "Please enter a message.";
 
-  if (!formData.get("terms")) {
+  const terms = Boolean(formData.get("terms"));
+  if (!terms) {
     return {
       status: "error",
       message: "Please agree to the terms & conditions to continue.",
       errors,
       values,
+      terms,
     };
   }
 
@@ -56,6 +58,7 @@ export async function submitContact(
       message: "Please correct the highlighted fields and try again.",
       errors,
       values,
+      terms,
     };
   }
 
@@ -67,6 +70,7 @@ export async function submitContact(
       message: `This form isn't connected yet. ${FALLBACK_CONTACT}`,
       errors: {},
       values,
+      terms,
     };
   }
 
@@ -95,6 +99,7 @@ export async function submitContact(
       message: `Sorry — we couldn't send your message. ${FALLBACK_CONTACT}`,
       errors: {},
       values,
+      terms,
     };
   }
 
@@ -104,5 +109,6 @@ export async function submitContact(
       "Thanks for reaching out. One of our representatives will get back to you shortly.",
     errors: {},
     values: initialContactState.values,
+    terms: false,
   };
 }

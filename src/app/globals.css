@@ -589,11 +589,9 @@ button, input, textarea, select {
   justify-content: center;
 }
 
+/* Per-logo widths come from the component; height follows the aspect ratio. */
 .institution-logo img {
   max-width: 100%;
-  max-height: 72px;
-  width: auto;
-  height: auto;
   object-fit: contain;
   /* NSF and AWWA ship on a white plate — multiply blends it into the panel */
   mix-blend-mode: multiply;

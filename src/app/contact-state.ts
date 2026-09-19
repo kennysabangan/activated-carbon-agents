@@ -16,6 +16,8 @@ export type ContactState = {
   message: string;
   errors: Partial<Record<ContactField, string>>;
   values: Record<ContactField, string>;
+  /* Kept so a failed submit doesn't silently clear the consent box. */
+  terms: boolean;
 };
 
 export const initialContactState: ContactState = {
@@ -23,4 +25,5 @@ export const initialContactState: ContactState = {
   message: "",
   errors: {},
   values: { firstName: "", lastName: "", phone: "", email: "", message: "" },
+  terms: false,
 };

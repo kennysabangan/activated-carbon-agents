@@ -119,7 +119,13 @@ export default function ContactForm() {
         )}
       </div>
       <div className="form-checkbox">
-        <input type="checkbox" id="terms" name="terms" required />
+        <input
+          type="checkbox"
+          id="terms"
+          name="terms"
+          defaultChecked={state.terms}
+          required
+        />
         <label htmlFor="terms">
           I agree to{" "}
           <a href="/terms-and-conditions">terms &amp; conditions</a> provided by

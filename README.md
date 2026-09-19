@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Activated Carbon Agents
+
+A Next.js clone of the Activated Carbon Agents site.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
+cp .env.example .env.local   # then fill in the values below
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contact form email (Resend)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The contact form is a Server Action (`src/app/actions.ts`) that sends an
+internal lead notification through [Resend](https://resend.com). It reads
+three variables, all set in `.env.local` locally and in your host's
+environment in production:
 
-## Learn More
+| Variable | Purpose |
+| --- | --- |
+| `RESEND_API_KEY` | API key from <https://resend.com/api-keys> |
+| `CONTACT_TO_EMAIL` | Where lead notifications are delivered |
+| `CONTACT_FROM_EMAIL` | Sender address — see the note below |
 
-To learn more about Next.js, take a look at the following resources:
+`.env.local` is git-ignored, so it never leaves your machine. A deploy needs
+the same three variables set in the hosting platform's env settings.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### You must verify a domain before this works
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Resend's shared `onboarding@resend.dev` sender is **test-only**: it will
+deliver *only* to the email address that owns the Resend account, and
+rejects every other recipient with:
 
-## Deploy on Vercel
+> You can only send testing emails to your own email address. To send emails
+> to other recipients, please verify a domain at resend.com/domains, and
+> change the `from` address to an email using this domain.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+So before leads can reach `CONTACT_TO_EMAIL`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Verify a domain at <https://resend.com/domains> (add the DNS records it
+   gives you).
+2. Set `CONTACT_FROM_EMAIL` to an address on that domain, e.g.
+   `Activated Carbon Agents <leads@activatedcarbonagents.com>`.
+
+Until then the form shows the visitor a fallback pointing at the published
+phone number and email rather than reporting a success it cannot deliver.
+The underlying Resend error is logged server-side.
+
+## Notes
+
+- `public/videos/palms.mp4` is not referenced by any section yet.
