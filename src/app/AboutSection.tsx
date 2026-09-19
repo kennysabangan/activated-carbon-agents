@@ -1,45 +1,40 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="section about-section">
+    <section id="activated-carbon" className="section about-section">
       <div className="container">
         <div className="about-grid">
           <div className="about-text fade-in-left">
-            <p className="overline">ABOUT US</p>
-            <h2 className="headline-lg">
-              Decades of Expertise in Activated Carbon
-            </h2>
-            <p className="body-lg">
-              We&apos;ve been at the forefront of the activated carbon industry for
-              over three decades. Our commitment to quality, reliability, and
-              customer satisfaction has made us a trusted partner for businesses
-              worldwide. From water treatment plants to industrial
-              manufacturers, we deliver solutions that meet the highest
-              standards.
+            <h2>ABOUT US</h2>
+            <p>
+              Our mission at Activated Carbon Agents is simple: to provide
+              high-quality products and outstanding customer service at
+              manufacturer direct pricing. Our team goes above and beyond to
+              cater to each client&apos;s specific needs. For more information
+              or general inquiries, get in touch today.
             </p>
-            <p className="body-lg" style={{ marginBottom: 32 }}>
-              As a Forbes 5000 recognized company, we combine deep technical
-              expertise with global sourcing capabilities to provide
-              manufacturer direct pricing — eliminating middlemen and passing
-              the savings directly to our customers.
-            </p>
-            <a href="#contact" className="btn btn-primary">
-              Contact Us
-            </a>
+            <Link href="/#contact" className="link-arrow">
+              Contact Us <span aria-hidden="true">&#10142;</span>
+            </Link>
           </div>
-          <div className="about-image-wrapper fade-in-right">
+
+          <div className="about-images fade-in-right">
             <Image
+              className="about-image-back"
               src="/images/about-carbon.jpeg"
-              alt="Activated carbon production"
-              width={540}
-              height={400}
-              style={{ width: "100%", height: "auto" }}
+              alt="Granular activated carbon"
+              width={440}
+              height={560}
             />
-            <div className="about-badge">
-              <div className="about-badge-title">Since 1988</div>
-              <div className="about-badge-sub">Industry Leader</div>
-            </div>
+            <Image
+              className="about-image-front"
+              src="/images/about-water.webp"
+              alt="Activated carbon pellets held in a hand"
+              width={440}
+              height={560}
+            />
           </div>
         </div>
       </div>

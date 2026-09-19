@@ -1,5 +1,6 @@
 "use server";
 
+import { Resend } from "resend";
 import {
   CONTACT_FIELDS,
   initialContactState,
@@ -8,6 +9,22 @@ import {
 } from "./contact-state";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "kim@activatedcarbonagents.com";
+const FROM_EMAIL =
+  process.env.CONTACT_FROM_EMAIL ??
+  "Activated Carbon Agents <onboarding@resend.dev>";
+
+const FALLBACK_CONTACT =
+  "Please email kim@activatedcarbonagents.com or call (855) 934-3376.";
+
+function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
 
 export async function submitContact(
   _prevState: ContactState,
@@ -44,34 +61,51 @@ export async function submitContact(
     };
   }
 
-  // Where the lead actually goes. Set CONTACT_WEBHOOK_URL to the GoHighLevel
-  // (or other CRM) inbound webhook for this form. Without it there is nowhere
-  // to deliver the submission, so we say so rather than reporting a success
-  // that would silently drop the enquiry.
-  const endpoint = process.env.CONTACT_WEBHOOK_URL;
-  if (!endpoint) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("RESEND_API_KEY is not set — contact form cannot send.");
     return {
       status: "error",
-      message:
-        "This form isn't connected yet. Please email kim@activatedcarbonagents.com or call (855) 934-3376 and we'll get right back to you.",
+      message: `This form isn't connected yet. ${FALLBACK_CONTACT}`,
       errors: {},
       values,
     };
   }
 
+  const name = `${values.firstName} ${values.lastName}`;
+  const plain = [
+    `Name:  ${name}`,
+    `Email: ${values.email}`,
+    `Phone: ${values.phone}`,
+    "",
+    values.message,
+  ].join("\n");
+
   try {
-    const res = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+    const { error } = await new Resend(apiKey).emails.send({
+      from: FROM_EMAIL,
+      to: [TO_EMAIL],
+      // Replying in the inbox goes straight back to the enquirer.
+      replyTo: values.email,
+      subject: `Website enquiry from ${name}`,
+      text: plain,
+      html: `
+        <h2>New enquiry from activatedcarbonagents.com</h2>
+        <p>
+          <strong>Name:</strong> ${escapeHtml(name)}<br />
+          <strong>Email:</strong> ${escapeHtml(values.email)}<br />
+          <strong>Phone:</strong> ${escapeHtml(values.phone)}
+        </p>
+        <p style="white-space:pre-wrap">${escapeHtml(values.message)}</p>
+      `,
     });
-    if (!res.ok) throw new Error(`Upstream responded ${res.status}`);
+
+    if (error) throw new Error(`${error.name}: ${error.message}`);
   } catch (err) {
     console.error("Contact form submission failed:", err);
     return {
       status: "error",
-      message:
-        "Sorry — we couldn't send your message. Please email kim@activatedcarbonagents.com or call (855) 934-3376.",
+      message: `Sorry — we couldn't send your message. ${FALLBACK_CONTACT}`,
       errors: {},
       values,
     };

@@ -1,29 +1,40 @@
+import Link from "next/link";
+
+/**
+ * Hero and the "Activated Carbon Agents" intro row share a single full-bleed
+ * photo, with a rule between them — as on the original site.
+ */
 export default function HeroSection() {
   return (
     <section className="hero">
-      <div className="hero-bg" />
-      <div className="hero-overlay" />
-      <div className="hero-content">
-        <p className="overline">MANUFACTURER DIRECT PRICING</p>
-        <h1 className="hero-headline">Quality Activated Carbon</h1>
-        <p className="hero-subline">Directly from Manufacturers</p>
-        <p className="hero-desc">
-          Manufacturer direct pricing backed by decades of experience and
-          technical support.
-        </p>
-        <div className="hero-ctas">
-          <a href="#contact" className="btn btn-primary">
+      <div className="hero-inner">
+        <div className="hero-copy">
+          <h1>
+            Quality Activated Carbon
+            <br />
+            Directly from Manufacturers
+          </h1>
+          <p className="hero-sub">
+            Manufacturer direct pricing backed by decades of experience and
+            technical support.
+          </p>
+          <Link href="/#contact" className="btn btn-light">
             Contact Us
-          </a>
-          <a href="#about" className="btn btn-ghost">
-            Learn More
-          </a>
+          </Link>
         </div>
-      </div>
-      <div className="scroll-indicator">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
+
+        <hr className="hero-divider" />
+
+        <div className="hero-intro">
+          <h2>Activated Carbon Agents</h2>
+          <p>
+            Activated Carbon Agents has led the activated carbon market for
+            decades, sourcing the highest-quality products at the best prices.
+            With deep industry expertise, we know which manufacturers deliver
+            superior carbon—ensuring full transparency, expert support, and
+            unmatched value every step of the way.
+          </p>
+        </div>
       </div>
     </section>
   );

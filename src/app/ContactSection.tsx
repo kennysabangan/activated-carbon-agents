@@ -2,9 +2,9 @@ import ContactForm from "@/components/ContactForm";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="section-sm contact-section">
+    <section id="contact" className="contact-section">
       <div className="container">
-        <div className="contact-card fade-in">
+        <div className="contact-card">
           <h2>Have a Question?</h2>
           <p className="subtitle">
             One of our representatives will reach back to you quickly.

@@ -4,27 +4,27 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+const NAV = [
+  { href: "/", label: "Home" },
+  { href: "/#activated-carbon", label: "Activated Carbon" },
+  { href: "/about", label: "About Us" },
+  { href: "/resources", label: "Resources" },
+];
+
 export default function Header() {
-  const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [lastY, setLastY] = useState(0);
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 50);
-      if (y > lastY && y > 120) setHidden(true);
-      else setHidden(false);
-      setLastY(y);
-    };
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [lastY]);
+  }, []);
 
   return (
     <>
-      <header className={`header${hidden ? " hidden" : ""}${scrolled ? " scrolled" : ""}`}>
+      <header className={`header${scrolled ? " scrolled" : ""}`}>
         <div className="header-inner">
           <Link href="/" className="header-logo">
             <Image
@@ -37,14 +37,15 @@ export default function Header() {
           </Link>
 
           <nav className="header-nav">
-            <Link href="/">Home</Link>
-            <Link href="/#products">Products</Link>
-            <Link href="/about">About</Link>
-            <Link href="/resources">Resources</Link>
+            {NAV.map((item) => (
+              <Link key={item.label} href={item.href}>
+                {item.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="header-cta">
-            <Link href="/#contact" className="btn btn-primary">
+            <Link href="/#contact" className="btn btn-outline">
               Contact Us
             </Link>
           </div>
@@ -53,6 +54,7 @@ export default function Header() {
             className="mobile-toggle"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             <span />
             <span />
@@ -63,11 +65,12 @@ export default function Header() {
 
       {mobileOpen && (
         <div className="mobile-menu" onClick={() => setMobileOpen(false)}>
-          <Link href="/">Home</Link>
-          <Link href="/#products">Products</Link>
-          <Link href="/about">About</Link>
-          <Link href="/resources">Resources</Link>
-          <Link href="/#contact" className="btn btn-primary" style={{ textAlign: "center" }}>
+          {NAV.map((item) => (
+            <Link key={item.label} href={item.href}>
+              {item.label}
+            </Link>
+          ))}
+          <Link href="/#contact" className="btn btn-outline">
             Contact Us
           </Link>
         </div>

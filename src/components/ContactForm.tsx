@@ -27,6 +27,7 @@ export default function ContactForm() {
             type="text"
             id="firstName"
             name="firstName"
+            placeholder="First Name"
             required
             defaultValue={state.values.firstName}
             aria-invalid={state.errors.firstName ? true : undefined}
@@ -46,6 +47,7 @@ export default function ContactForm() {
             type="text"
             id="lastName"
             name="lastName"
+            placeholder="Last Name"
             required
             defaultValue={state.values.lastName}
             aria-invalid={state.errors.lastName ? true : undefined}
@@ -62,11 +64,12 @@ export default function ContactForm() {
       </div>
       <div className="form-row">
         <div className="form-group">
-          <label htmlFor="phone">Phone</label>
+          <label htmlFor="phone">Phone <span className="req">*</span></label>
           <input
             type="tel"
             id="phone"
             name="phone"
+            placeholder="Phone"
             required
             defaultValue={state.values.phone}
             aria-invalid={state.errors.phone ? true : undefined}
@@ -79,11 +82,12 @@ export default function ContactForm() {
           )}
         </div>
         <div className="form-group">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email <span className="req">*</span></label>
           <input
             type="email"
             id="email"
             name="email"
+            placeholder="Email"
             required
             defaultValue={state.values.email}
             aria-invalid={state.errors.email ? true : undefined}
@@ -97,11 +101,12 @@ export default function ContactForm() {
         </div>
       </div>
       <div className="form-group">
-        <label htmlFor="message">Message</label>
+        <label htmlFor="message">Your Message</label>
         <textarea
           id="message"
           name="message"
-          rows={5}
+          rows={3}
+          placeholder="Your Message"
           required
           defaultValue={state.values.message}
           aria-invalid={state.errors.message ? true : undefined}
@@ -116,9 +121,10 @@ export default function ContactForm() {
       <div className="form-checkbox">
         <input type="checkbox" id="terms" name="terms" required />
         <label htmlFor="terms">
-          I agree to the{" "}
-          <a href="/terms-and-conditions">Terms &amp; Conditions</a> and{" "}
-          <a href="/privacy-policy">Privacy Policy</a>.
+          I agree to{" "}
+          <a href="/terms-and-conditions">terms &amp; conditions</a> provided by
+          the company. By providing my phone number, I agree to receive text
+          messages from the business.
         </label>
       </div>
       {state.status === "error" && state.message && (
@@ -127,7 +133,7 @@ export default function ContactForm() {
         </p>
       )}
       <button type="submit" className="btn-submit" disabled={pending}>
-        {pending ? "Sending…" : "Submit"}
+        {pending ? "Sending…" : "Send Message"}
       </button>
     </form>
   );

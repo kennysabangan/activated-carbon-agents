@@ -1,51 +1,44 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SourcingSection() {
   return (
     <section className="section sourcing-section">
       <div className="container">
         <div className="sourcing-grid">
-          <div className="sourcing-image fade-in-left">
+          <div className="sourcing-text fade-in-left">
             <Image
+              className="sourcing-icon"
               src="/images/globe.png"
-              alt="Global sourcing network"
-              width={460}
-              height={460}
-              style={{ width: "100%", height: "auto" }}
+              alt=""
+              aria-hidden="true"
+              width={58}
+              height={58}
             />
-          </div>
-          <div className="sourcing-text fade-in-right">
-            <p className="overline">GLOBAL SOURCING</p>
-            <h2 className="headline-lg">Unmatched Quality, Worldwide</h2>
-            <p className="body-lg">
-              Our global sourcing network ensures access to the highest quality
-              activated carbon from trusted manufacturers across multiple
-              continents. We maintain rigorous quality standards at every step,
-              from raw material selection to final delivery.
+            <h2>
+              GLOBAL SOURCING,
+              <br />
+              UNMATCHED QUALITY
+            </h2>
+            <p>
+              We have searched the world to find the best manufacturing
+              facilities in wood, coal and coconut shell base products. These
+              manufacturers have proven over the years to be reliable and
+              produce a consistently high quality product. We match the right
+              activated carbon for an application with the best manufacturer.
             </p>
-            <div className="sourcing-features">
-              <div className="sourcing-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Wood-based activated carbon
-              </div>
-              <div className="sourcing-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Coal-based products
-              </div>
-              <div className="sourcing-feature">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                Coconut shell carbon
-              </div>
-            </div>
-            <a href="#contact" className="btn btn-primary">
-              Get Started
-            </a>
+            <Link href="/#contact" className="btn btn-light-accent">
+              Contact Us
+            </Link>
+          </div>
+
+          <div className="sourcing-image fade-in-right">
+            <Image
+              src="/images/about-carbon.jpeg"
+              alt="Granular activated carbon"
+              width={560}
+              height={420}
+            />
           </div>
         </div>
       </div>
