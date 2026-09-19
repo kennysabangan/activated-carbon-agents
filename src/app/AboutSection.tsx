@@ -1,13 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * The front panel is the supplied carbon-pour clip, autoplaying silently over
+ * the still the original site used as its first frame. The back panel stays a
+ * still image: the original screenshot shows granular carbon there, which is
+ * not what palms.mp4 contains.
+ */
 export default function AboutSection() {
   return (
     <section id="activated-carbon" className="section about-section">
       <div className="container">
         <div className="about-grid">
           <div className="about-text fade-in-left">
-            <h2>ABOUT US</h2>
+            <h2 className="section-title">ABOUT US</h2>
             <p>
               Our mission at Activated Carbon Agents is simple: to provide
               high-quality products and outstanding customer service at
@@ -28,12 +34,16 @@ export default function AboutSection() {
               width={440}
               height={560}
             />
-            <Image
+            <video
               className="about-image-front"
-              src="/images/about-water.webp"
-              alt="Activated carbon pellets held in a hand"
-              width={440}
-              height={560}
+              src="/videos/carbon-pour.mp4"
+              poster="/images/about-water.webp"
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
             />
           </div>
         </div>

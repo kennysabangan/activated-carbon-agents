@@ -7,24 +7,22 @@ import {
   type ContactField,
   type ContactState,
 } from "./contact-state";
+import {
+  internalLeadHtml,
+  internalLeadSubject,
+  internalLeadText,
+} from "@/emails/internal-lead";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "kim@activatedcarbonagents.com";
+// Internal lead notifications go to the agency inbox.
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "hello@scalesolving.com";
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ??
   "Activated Carbon Agents <onboarding@resend.dev>";
 
 const FALLBACK_CONTACT =
   "Please email kim@activatedcarbonagents.com or call (855) 934-3376.";
-
-function escapeHtml(value: string) {
-  return value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
 
 export async function submitContact(
   _prevState: ContactState,
@@ -72,14 +70,11 @@ export async function submitContact(
     };
   }
 
-  const name = `${values.firstName} ${values.lastName}`;
-  const plain = [
-    `Name:  ${name}`,
-    `Email: ${values.email}`,
-    `Phone: ${values.phone}`,
-    "",
-    values.message,
-  ].join("\n");
+  const receivedAt = new Intl.DateTimeFormat("en-US", {
+    dateStyle: "medium",
+    timeStyle: "short",
+    timeZone: "America/Los_Angeles",
+  }).format(new Date());
 
   try {
     const { error } = await new Resend(apiKey).emails.send({
@@ -87,17 +82,9 @@ export async function submitContact(
       to: [TO_EMAIL],
       // Replying in the inbox goes straight back to the enquirer.
       replyTo: values.email,
-      subject: `Website enquiry from ${name}`,
-      text: plain,
-      html: `
-        <h2>New enquiry from activatedcarbonagents.com</h2>
-        <p>
-          <strong>Name:</strong> ${escapeHtml(name)}<br />
-          <strong>Email:</strong> ${escapeHtml(values.email)}<br />
-          <strong>Phone:</strong> ${escapeHtml(values.phone)}
-        </p>
-        <p style="white-space:pre-wrap">${escapeHtml(values.message)}</p>
-      `,
+      subject: internalLeadSubject(values),
+      text: internalLeadText(values, `${receivedAt} PT`),
+      html: internalLeadHtml(values, `${receivedAt} PT`),
     });
 
     if (error) throw new Error(`${error.name}: ${error.message}`);

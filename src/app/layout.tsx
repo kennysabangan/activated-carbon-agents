@@ -39,6 +39,10 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
+        {/* Without JS the IntersectionObserver never runs, so reveal everything. */}
+        <noscript>
+          <style>{`.fade-in,.fade-in-left,.fade-in-right{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body>{children}</body>
     </html>
