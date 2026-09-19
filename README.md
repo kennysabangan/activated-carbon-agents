@@ -16,17 +16,18 @@ Open [http://localhost:3000](http://localhost:3000).
 
 The contact form is a Server Action (`src/app/actions.ts`) that sends an
 internal lead notification through [Resend](https://resend.com). It reads
-three variables, all set in `.env.local` locally and in your host's
+these variables, all set in `.env.local` locally and in your host's
 environment in production:
 
 | Variable | Purpose |
 | --- | --- |
 | `RESEND_API_KEY` | API key from <https://resend.com/api-keys> |
-| `CONTACT_TO_EMAIL` | Where lead notifications are delivered |
+| `CONTACT_TO_EMAIL` | Primary recipient of lead notifications |
+| `CONTACT_BCC_EMAIL` | Blind-copied on every lead; leave empty for none |
 | `CONTACT_FROM_EMAIL` | Sender address — see the note below |
 
 `.env.local` is git-ignored, so it never leaves your machine. A deploy needs
-the same three variables set in the hosting platform's env settings.
+the same variables set in the hosting platform's env settings.
 
 ### Sender domain
 
