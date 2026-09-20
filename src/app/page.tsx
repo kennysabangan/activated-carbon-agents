@@ -11,11 +11,8 @@ import ContactSection from "./ContactSection";
 export default function Home() {
   return (
     <>
-      <a href="#activated-carbon" className="skip-link">
-        Skip to content
-      </a>
       <Header />
-      <main id="main">
+      <main>
         <HeroSection />
         <AboutSection />
         <InstitutionsBand />

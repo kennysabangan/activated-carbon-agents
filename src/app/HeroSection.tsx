@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 /**
- * Hero and the "Activated Carbon Agents" intro row share a single full-bleed
- * photo, as on the original site. The intro sits in a translucent panel at
- * the base of the image rather than beneath a rule.
+ * Hero and the intro paragraph share a single full-bleed photo, as on the
+ * original site. The intro sits in a translucent panel at the base of the
+ * image, leading with the company name in bold and running on from it.
  */
 export default function HeroSection() {
   return (
@@ -25,13 +25,12 @@ export default function HeroSection() {
         </div>
 
         <div className="hero-intro">
-          <h2>Activated Carbon Agents</h2>
           <p>
-            Activated Carbon Agents has led the activated carbon market for
-            decades, sourcing the highest-quality products at the best prices.
-            With deep industry expertise, we know which manufacturers deliver
-            superior carbon—ensuring full transparency, expert support, and
-            unmatched value every step of the way.
+            <strong>Activated Carbon Agents</strong> has led the activated
+            carbon market for decades, sourcing the highest-quality products at
+            the best prices. With deep industry expertise, we know which
+            manufacturers deliver superior carbon—ensuring full transparency,
+            expert support, and unmatched value every step of the way.
           </p>
         </div>
       </div>
