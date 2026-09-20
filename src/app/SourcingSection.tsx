@@ -27,7 +27,7 @@ export default function SourcingSection() {
               produce a consistently high quality product. We match the right
               activated carbon for an application with the best manufacturer.
             </p>
-            <Link href="/#contact" className="btn btn-light-accent">
+            <Link href="/#contact" className="btn btn-light">
               Contact Us
             </Link>
           </div>

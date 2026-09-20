@@ -10,12 +10,21 @@
   --ink-3: #7a7f88;
   --on-dark: #ece9e3;
   --on-dark-2: rgba(236, 233, 227, 0.72);
-  /* Rust is the single accent; sage is the one saturated block */
+  /* Colour roles — the rule that keeps the page coherent:
+       rust  = action + emphasis, on LIGHT surfaces only
+       white = action on DARK surfaces and photography (ink text)
+     Rust and sage are near-complementary, so rust never appears inside the
+     green block: it vibrates against the background and reads as arbitrary. */
   --accent: #b5482b;
   --accent-hover: #9a3a21;
   --accent-soft: #f6e6df;
-  --sage: #667a5c;
-  --sage-deep: #55684c;
+  /* Sage is measured, not eyeballed: #5b6d52 is the lightest value at which
+     cream body text (#f2f0eb) still clears 4.5:1 with margin (4.91:1).
+     The previous #667a5c could not pass with any cream — it topped out at
+     4.31 even for near-white — which is why that block read as washed. */
+  --sage: #5b6d52;
+  --sage-deep: #4c5c44;
+  --on-sage: #f2f0eb;
   --line: #e6e2db;
   --line-strong: #d3cec5;
   --focus: rgba(181, 72, 43, 0.38);
@@ -247,18 +256,6 @@ button, input, textarea, select {
 }
 
 .btn-light:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-/* On the sage block: white with rust text */
-.btn-light-accent {
-  background: #fff;
-  border-color: #fff;
-  color: var(--accent);
-  box-shadow: var(--shadow-md);
-}
-
-.btn-light-accent:hover {
   box-shadow: var(--shadow-lg);
 }
 
@@ -710,7 +707,7 @@ button, input, textarea, select {
 .sourcing-text p {
   font-size: var(--step-lead);
   line-height: 1.65;
-  color: var(--on-dark-2);
+  color: var(--on-sage);
   margin-bottom: 32px;
 }
 
