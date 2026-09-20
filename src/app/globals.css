@@ -638,7 +638,9 @@ button, input, textarea, select {
 
 /* Stacked on phones: centring three differently-shaped marks reads as
    misaligned because their optical centres differ, so they share one left
-   edge and one width instead, with even spacing between. */
+   edge instead. Widths are per-logo (--logo-w-sm, set in the component)
+   and derived from measured ink so the three carry equal visual mass —
+   equal width would make NSF's solid disc look twice the size of ASTM. */
 @media (max-width: 768px) {
   .institutions-panel {
     grid-template-columns: 1fr;
@@ -653,7 +655,7 @@ button, input, textarea, select {
   }
 
   .institution-logo img {
-    width: min(236px, 100%);
+    width: var(--logo-w-sm);
   }
 }
 
