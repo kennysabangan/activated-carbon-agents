@@ -1433,3 +1433,161 @@ button, input, textarea, select {
     scroll-behavior: auto !important;
   }
 }
+
+/* ============================================
+   APPLICATION PAGES
+   ============================================ */
+
+.prose-narrow {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.prose-narrow p {
+  font-size: var(--step-body);
+  line-height: 1.8;
+  color: var(--ink-2);
+  margin-bottom: 20px;
+}
+
+.prose-narrow p.lead {
+  font-size: var(--step-lead);
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.prose-narrow h2 {
+  font-size: clamp(1.45rem, 1.2rem + 0.9vw, 1.9rem);
+  margin: 48px 0 18px;
+  color: var(--ink);
+}
+
+.prose-narrow h3 {
+  font-size: var(--step-h3);
+  margin: 28px 0 10px;
+  color: var(--ink);
+}
+
+.inline-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  max-width: 760px;
+  margin: 0 auto 32px;
+  font-size: 14px;
+  color: var(--ink-3);
+}
+
+.breadcrumb a:hover { color: var(--accent); }
+.breadcrumb [aria-current] { color: var(--ink); }
+
+/* Term/definition pairs for specification lists */
+.spec-list {
+  margin: 8px 0 24px;
+  border-top: 1px solid var(--line);
+}
+
+.spec-list > div {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.spec-list dt {
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.spec-list dd {
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.faq-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.faq-item h3 { margin: 0 0 8px; }
+.faq-item p { margin: 0; }
+
+.page-cta {
+  margin: 56px 0 0;
+  padding: 32px;
+  background: var(--surface-2);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.page-cta p {
+  font-size: var(--step-lead);
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.sibling-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.sibling-links a {
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.sibling-links a:hover { color: var(--accent-hover); }
+
+/* Hub page cards */
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.app-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
+}
+
+.app-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.app-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+
+.app-card p {
+  flex: 1;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin-bottom: 20px;
+}
+
+.app-card-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+}

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { canonical } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Animations from "@/components/Animations";
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical("/terms-and-conditions") },
   title: "Terms & Conditions | Activated Carbon Agents",
   description: "Terms and conditions for using the Activated Carbon Agents website and services.",
 };

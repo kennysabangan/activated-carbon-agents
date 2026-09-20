@@ -1,17 +1,41 @@
 import type { Metadata } from "next";
+import { canonical, SITE_NAME, SITE_URL } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Animations from "@/components/Animations";
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical("/resources/b/what-is-activated-carbon") },
   title: "What is Activated Carbon? | Activated Carbon Agents",
   description:
     "A comprehensive guide to activated carbon — what it is, how it's manufactured, and its key applications in water treatment, air purification, and industrial processes.",
 };
 
 export default function ArticlePage() {
+  const path = "/resources/b/what-is-activated-carbon";
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: "What is Activated Carbon?",
+          description:
+            "A comprehensive overview of activated carbon — what it is, how it is made, and why it matters for water treatment, air purification and industrial processes.",
+          mainEntityOfPage: canonical(path),
+          author: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+          publisher: { "@id": `${SITE_URL}/#organization` },
+        }}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+          { name: "What is Activated Carbon?", path },
+        ])}
+      />
       <Header />
       <main>
         <div className="article-page">

@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { canonical } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Animations from "@/components/Animations";
 import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical("/about") },
   title: "About Us | Activated Carbon Agents",
   description:
     "Learn about our mission, values, and the decades of expertise behind Activated Carbon Agents. Forbes 5000 recognized, serving since 1988.",

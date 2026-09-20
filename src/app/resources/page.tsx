@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { canonical } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Animations from "@/components/Animations";
@@ -6,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical("/resources") },
   title: "Resources & Insights | Activated Carbon Agents",
   description:
     "Articles, guides, and insights on activated carbon — applications, selection, and best practices.",

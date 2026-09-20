@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { canonical } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Animations from "@/components/Animations";
 
 export const metadata: Metadata = {
+  alternates: { canonical: canonical("/privacy-policy") },
   title: "Privacy Policy | Activated Carbon Agents",
   description: "Privacy Policy for Activated Carbon Agents.",
 };
