@@ -8,7 +8,8 @@ import Image from "next/image";
  * horizontal strip at ~5:1, AWWA is a stacked block at ~2.2:1), so a shared
  * max-height makes ASTM tower over the others. The original balances them by
  * width instead, which is what `width` below sets; height follows from each
- * file's own aspect ratio.
+ * file's own aspect ratio. On phones, where they stack, the CSS overrides
+ * this with one shared width and a common left edge.
  */
 const INSTITUTIONS = [
   {
@@ -37,13 +38,19 @@ export default function InstitutionsBand() {
       <div className="container">
         <div className="institutions-panel fade-in">
           {INSTITUTIONS.map((logo) => (
-            <div className="institution-logo" key={logo.alt}>
+            <div
+              className="institution-logo"
+              key={logo.alt}
+              // On the wrapper, not the img, so the phone media query can
+              // override the img width: an inline value on the img itself
+              // would beat the stylesheet.
+              style={{ "--logo-w": `${logo.width}px` } as React.CSSProperties}
+            >
               <Image
                 src={logo.src}
                 alt={logo.alt}
                 width={logo.intrinsic[0]}
                 height={logo.intrinsic[1]}
-                style={{ width: `${logo.width}px`, height: "auto" }}
               />
             </div>
           ))}

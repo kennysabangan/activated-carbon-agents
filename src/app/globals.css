@@ -622,6 +622,8 @@ button, input, textarea, select {
 }
 
 .institution-logo img {
+  width: var(--logo-w);
+  height: auto;
   max-width: 100%;
   object-fit: contain;
   /* NSF and AWWA ship on a white plate — multiply blends it into the surface */
@@ -634,8 +636,25 @@ button, input, textarea, select {
   opacity: 1;
 }
 
+/* Stacked on phones: centring three differently-shaped marks reads as
+   misaligned because their optical centres differ, so they share one left
+   edge and one width instead, with even spacing between. */
 @media (max-width: 768px) {
-  .institutions-panel { grid-template-columns: 1fr; gap: 32px; }
+  .institutions-panel {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 32px 28px;
+    justify-items: start;
+  }
+
+  .institution-logo {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .institution-logo img {
+    width: min(236px, 100%);
+  }
 }
 
 /* ============================================
