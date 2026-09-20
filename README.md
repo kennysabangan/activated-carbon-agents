@@ -26,8 +26,11 @@ environment in production:
 | `CONTACT_BCC_EMAIL` | Blind-copied on every lead; leave empty for none |
 | `CONTACT_FROM_EMAIL` | Sender address — see the note below |
 
-`.env.local` is git-ignored, so it never leaves your machine. A deploy needs
-the same variables set in the hosting platform's env settings.
+`.env.local` is git-ignored, so it never leaves your machine — it does **not**
+deploy. Production runs on Vercel (project `activated-carbon-agents`, team
+`scalesolving`), where all four variables are set for the Production and
+Preview environments. Changing a value there needs a redeploy to take effect;
+Vercel does not restart running deployments when a variable changes.
 
 ### Sender domain
 
