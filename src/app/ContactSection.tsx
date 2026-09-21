@@ -5,7 +5,7 @@ export default function ContactSection() {
     <section id="contact" className="contact-section">
       <div className="container">
         <div className="contact-card">
-          <h2>Have a Question?</h2>
+          <h2 className="section-title is-centered">Have a Question?</h2>
           <p className="subtitle">
             One of our representatives will reach back to you quickly.
           </p>

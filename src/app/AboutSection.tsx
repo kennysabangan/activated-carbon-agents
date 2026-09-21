@@ -21,8 +21,8 @@ export default function AboutSection() {
               cater to each client&apos;s specific needs. For more information
               or general inquiries, get in touch today.
             </p>
-            <Link href="/#contact" className="link-arrow">
-              Contact Us <span aria-hidden="true">&#10142;</span>
+            <Link href="/#contact" className="btn btn-primary">
+              Contact Us
             </Link>
           </div>
 
