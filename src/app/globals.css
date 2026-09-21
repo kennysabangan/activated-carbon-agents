@@ -64,7 +64,11 @@
   --step-eyebrow: 0.8125rem;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* One measure for the entire page. The header and hero used to run to
+     1800px while sections ran to 1200px, so on a wide monitor the logo, nav
+     and headline sat ~260px left of every section below them. */
   --container: 1200px;
+  --gutter: 32px;
 }
 
 *, *::before, *::after {
@@ -147,7 +151,7 @@ button, input, textarea, select {
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 var(--gutter);
 }
 
 .section {
@@ -192,7 +196,7 @@ button, input, textarea, select {
 }
 
 @media (max-width: 900px) {
-  .container { padding: 0 24px; }
+  :root { --gutter: 24px; }
 }
 
 /* ============================================
@@ -300,9 +304,9 @@ button, input, textarea, select {
 }
 
 .header-inner {
-  max-width: 1800px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 var(--gutter);
   height: 92px;
   display: flex;
   align-items: center;
@@ -415,7 +419,7 @@ button, input, textarea, select {
 .mobile-menu > .btn { margin-top: 12px; }
 
 @media (max-width: 1024px) {
-  .header-inner { padding: 0 24px; height: 80px; }
+  .header-inner { height: 80px; }
   .header-nav, .header-cta { display: none; }
   .mobile-toggle { display: flex; }
   .header-logo img { height: 48px; }
@@ -452,14 +456,14 @@ button, input, textarea, select {
 
 .hero-inner {
   width: 100%;
-  max-width: 1800px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: clamp(120px, 6rem + 8vw, 200px) 40px clamp(40px, 2rem + 2vw, 56px);
+  padding: clamp(96px, 5rem + 5vw, 148px) var(--gutter) clamp(40px, 2rem + 2vw, 56px);
   color: #fff;
 }
 
 .hero-copy {
-  max-width: 1080px;
+  max-width: 100%;
 }
 
 .hero-copy h1 {
@@ -481,16 +485,16 @@ button, input, textarea, select {
 }
 
 .hero-copy .btn {
-  margin-top: 34px;
+  margin-top: 30px;
 }
 
 /* The intro sits in a translucent panel at the base of the photo. One
    continuous paragraph: the company name leads in bold, the sentence runs on
    from it, so the name is not repeated. */
 .hero-intro {
-  max-width: 980px;
-  margin-top: clamp(48px, 3rem + 3vw, 80px);
-  padding: clamp(24px, 1.5rem + 1.2vw, 34px) clamp(24px, 1.5rem + 1.5vw, 40px);
+  max-width: 920px;
+  margin-top: clamp(40px, 2.2rem + 2vw, 60px);
+  padding: clamp(22px, 1.4rem + 1vw, 30px) clamp(24px, 1.5rem + 1.5vw, 36px);
   background: rgba(18, 20, 23, 0.42);
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: var(--radius-lg);
@@ -511,12 +515,12 @@ button, input, textarea, select {
 
 @media (max-width: 1024px) {
   .hero { min-height: auto; }
-  .hero-inner { padding: 96px 24px 32px; }
+  .hero-inner { padding: 88px var(--gutter) 32px; }
 }
 
 @media (max-width: 600px) {
   .hero-br { display: none; }
-  .hero-inner { padding: 88px 20px 24px; }
+  .hero-inner { padding: 80px var(--gutter) 24px; }
   .hero-copy .btn { margin-top: 26px; }
   .hero-intro { margin-top: 40px; padding: 22px; border-radius: var(--radius-md); }
 }
@@ -711,16 +715,22 @@ button, input, textarea, select {
   margin-bottom: 32px;
 }
 
-/* Breaks the container: extends to the right edge of the viewport */
+/* Breaks the container to reach the right edge of the viewport.
+   `calc(50% - 50vw)` is the usual idiom but it only works when the element's
+   parent IS the centred container. This is a GRID ITEM, so the 50% resolved
+   against the column (507px) rather than the container, overshooting the
+   viewport by a constant 314px at every width — invisible in testing because
+   body{overflow-x:clip} swallowed it. Measure from the container instead. */
 .sourcing-image {
   position: relative;
-  margin-right: calc(50% - 50vw);
+  margin-right: calc(-1 * max(0px, (100vw - var(--container)) / 2 + var(--gutter)));
 }
 
 .sourcing-image img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 5 / 4;
+  /* Height is capped so the section cannot balloon on a wide monitor: the
+     old 5/4 aspect made it 1244px tall at 2560px wide. */
+  height: clamp(420px, 34vw, 620px);
   object-fit: cover;
   border-radius: var(--radius-lg) 0 0 var(--radius-lg);
   box-shadow: var(--shadow-xl);
@@ -730,7 +740,7 @@ button, input, textarea, select {
   .sourcing-grid { grid-template-columns: 1fr; }
   .sourcing-text { max-width: none; }
   .sourcing-image { margin-right: 0; }
-  .sourcing-image img { border-radius: var(--radius-lg); aspect-ratio: 4 / 3; }
+  .sourcing-image img { border-radius: var(--radius-lg); height: clamp(280px, 52vw, 460px); }
 }
 
 /* ============================================
