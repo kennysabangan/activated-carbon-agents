@@ -1576,3 +1576,13 @@ button, input, textarea, select {
   font-weight: 500;
   color: var(--accent);
 }
+
+/* Honeypot. Positioned away rather than display:none, which some bots detect
+   and skip; this stays in the layout tree so a scripted filler still sees it. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

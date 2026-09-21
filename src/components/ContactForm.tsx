@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { submitContact } from "@/app/actions";
 import { initialContactState } from "@/app/contact-state";
 
@@ -9,6 +9,16 @@ export default function ContactForm() {
     submitContact,
     initialContactState
   );
+
+  /* Spam defences. The page is statically prerendered, so the timestamp has
+     to be stamped in the browser on mount — a build-time value would be
+     stale. Scripted submissions arrive with no timestamp at all, which the
+     scorer treats as unknown rather than guilty so that people browsing
+     without JavaScript are never penalised. */
+  const mountedAt = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    if (mountedAt.current) mountedAt.current.value = String(Date.now());
+  }, [state]);
 
   if (state.status === "success") {
     return (
@@ -20,6 +30,19 @@ export default function ContactForm() {
 
   return (
     <form className="contact-form" action={formAction}>
+      {/* Honeypot: invisible and skipped by keyboard, so only a bot fills it.
+          Not type="hidden" — many bots skip those but fill text inputs. */}
+      <div className="hp-field" aria-hidden="true">
+        <label htmlFor="company-website">Company website</label>
+        <input
+          type="text"
+          id="company-website"
+          name="companyWebsite"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+      <input type="hidden" name="renderedAt" ref={mountedAt} />
       <div className="form-row">
         <div className="form-group">
           <label htmlFor="firstName">First Name</label>

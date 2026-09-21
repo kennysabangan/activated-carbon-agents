@@ -12,6 +12,7 @@ import {
   internalLeadSubject,
   internalLeadText,
 } from "@/emails/internal-lead";
+import { scoreSpam } from "@/lib/spam";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -77,6 +78,37 @@ export async function submitContact(
     };
   }
 
+  /* Spam gate. Suspected spam is quarantined to the agency rather than
+     dropped: a false positive costs a review, not a lost enquiry. Either way
+     it never reaches the client's inbox. */
+  const renderedAt = Number(formData.get("renderedAt"));
+  const verdict = scoreSpam(values, {
+    honeypot: String(formData.get("companyWebsite") ?? ""),
+    elapsedMs: Number.isFinite(renderedAt) && renderedAt > 0 ? Date.now() - renderedAt : null,
+  });
+
+  const recipients = verdict.isSpam
+    ? [BCC_EMAIL].filter(Boolean)
+    : [TO_EMAIL];
+  const bcc = verdict.isSpam ? [] : [BCC_EMAIL].filter(Boolean);
+
+  if (verdict.isSpam) {
+    console.warn(
+      `Quarantined suspected spam (score ${verdict.score}): ${verdict.reasons.join(", ")}`
+    );
+    // Nowhere to quarantine to, so drop it rather than deliver to the client.
+    if (recipients.length === 0) {
+      return {
+        status: "success",
+        message:
+          "Thanks for reaching out. One of our representatives will get back to you shortly.",
+        errors: {},
+        values: initialContactState.values,
+        terms: false,
+      };
+    }
+  }
+
   const receivedAt = new Intl.DateTimeFormat("en-US", {
     dateStyle: "medium",
     timeStyle: "short",
@@ -86,11 +118,13 @@ export async function submitContact(
   try {
     const { data, error } = await new Resend(apiKey).emails.send({
       from: FROM_EMAIL,
-      to: [TO_EMAIL],
-      ...(BCC_EMAIL ? { bcc: [BCC_EMAIL] } : {}),
+      to: recipients,
+      ...(bcc.length ? { bcc } : {}),
       // Replying in the inbox goes straight back to the enquirer.
       replyTo: values.email,
-      subject: internalLeadSubject(values),
+      subject: verdict.isSpam
+        ? `[Spam ${verdict.score}] ${internalLeadSubject(values)}`
+        : internalLeadSubject(values),
       text: internalLeadText(values, `${receivedAt} PT`),
       html: internalLeadHtml(values, `${receivedAt} PT`),
     });
@@ -98,8 +132,9 @@ export async function submitContact(
     if (error) throw new Error(`${error.name}: ${error.message}`);
     // Message id makes a delivery traceable in the Resend dashboard.
     console.info(
-      `Lead email queued (${data?.id}) for ${TO_EMAIL}` +
-        (BCC_EMAIL ? ` bcc ${BCC_EMAIL}` : "")
+      `Lead email queued (${data?.id}) for ${recipients.join(", ")}` +
+        (bcc.length ? ` bcc ${bcc.join(", ")}` : "") +
+        (verdict.isSpam ? " [quarantined]" : "")
     );
   } catch (err) {
     console.error("Contact form submission failed:", err);
