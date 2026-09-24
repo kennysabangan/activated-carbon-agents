@@ -13,6 +13,7 @@ import {
   internalLeadText,
 } from "@/emails/internal-lead";
 import { scoreSpam } from "@/lib/spam";
+import { verifyFormSolution } from "@/lib/altcha";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -61,6 +62,33 @@ export async function submitContact(
       status: "error",
       message: "Please correct the highlighted fields and try again.",
       errors,
+      values,
+      terms,
+    };
+  }
+
+  /* Proof-of-work gate, ahead of everything else. A failure here sends no
+     email to anyone. It shows a visible message rather than a fake success:
+     the bots that fail it cannot run JavaScript and so cannot act on it,
+     while a real person without JavaScript is given the phone and email. */
+  const proof = await verifyFormSolution(formData.get("altcha"));
+  if (proof === "disabled") {
+    console.warn("ALTCHA_HMAC_KEY is not set — proof-of-work check skipped.");
+  } else if (proof === "missing") {
+    console.warn("Rejected submission with no proof-of-work (JavaScript did not run).");
+    return {
+      status: "error",
+      message: `This form needs JavaScript to send. ${FALLBACK_CONTACT}`,
+      errors: {},
+      values,
+      terms,
+    };
+  } else if (proof !== "ok") {
+    console.warn(`Rejected submission: proof-of-work ${proof}.`);
+    return {
+      status: "error",
+      message: "That took a little too long to send. Please press Send Message again.",
+      errors: {},
       values,
       terms,
     };

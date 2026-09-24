@@ -1,8 +1,16 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import {
+  startTransition,
+  useActionState,
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+} from "react";
 import { submitContact } from "@/app/actions";
 import { initialContactState } from "@/app/contact-state";
+import { useAltcha } from "./useAltcha";
 
 export default function ContactForm() {
   const [state, formAction, pending] = useActionState(
@@ -16,9 +24,36 @@ export default function ContactForm() {
      scorer treats as unknown rather than guilty so that people browsing
      without JavaScript are never penalised. */
   const mountedAt = useRef<HTMLInputElement>(null);
+  const { warm, ensure, reset } = useAltcha();
+  const altchaInput = useRef<HTMLInputElement>(null);
+  const [verifying, setVerifying] = useState(false);
+
   useEffect(() => {
     if (mountedAt.current) mountedAt.current.value = String(Date.now());
-  }, [state]);
+    // Each proof is single-use, so every new result means solving afresh.
+    reset();
+  }, [state, reset]);
+
+  /* Once hydrated, the submit is taken over so a proof-of-work payload
+     (usually already solved in the background) can be attached before the
+     action runs. Without JavaScript this never runs and the form posts to
+     the action directly, which then asks for a phone call or email. The
+     browser's own required-field validation runs first, so an incomplete
+     form never reaches this. */
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (verifying || pending) return;
+    const form = e.currentTarget;
+    setVerifying(true);
+    try {
+      const payload = await ensure();
+      if (altchaInput.current) altchaInput.current.value = payload;
+    } finally {
+      setVerifying(false);
+    }
+    const data = new FormData(form);
+    startTransition(() => formAction(data));
+  }
 
   if (state.status === "success") {
     return (
@@ -29,7 +64,12 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" action={formAction}>
+    <form
+      className="contact-form"
+      action={formAction}
+      onSubmit={onSubmit}
+      onFocus={warm}
+    >
       {/* Honeypot: invisible and skipped by keyboard, so only a bot fills it.
           Not type="hidden" — many bots skip those but fill text inputs. */}
       <div className="hp-field" aria-hidden="true">
@@ -43,6 +83,7 @@ export default function ContactForm() {
         />
       </div>
       <input type="hidden" name="renderedAt" ref={mountedAt} />
+      <input type="hidden" name="altcha" ref={altchaInput} />
       <div className="form-row">
         <div className="form-group">
           <label htmlFor="firstName">First Name</label>
@@ -161,8 +202,8 @@ export default function ContactForm() {
           {state.message}
         </p>
       )}
-      <button type="submit" className="btn-submit" disabled={pending}>
-        {pending ? "Sending…" : "Send Message"}
+      <button type="submit" className="btn-submit" disabled={pending || verifying}>
+        {pending || verifying ? "Sending…" : "Send Message"}
       </button>
     </form>
   );
