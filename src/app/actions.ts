@@ -92,6 +92,25 @@ export async function submitContact(
     : [TO_EMAIL];
   const bcc = verdict.isSpam ? [] : [BCC_EMAIL].filter(Boolean);
 
+  /* Three tiers:
+       certain bot -> dropped silently, nobody is emailed
+       suspected   -> quarantined to the agency for review
+       clean       -> delivered to the client, agency BCC'd
+     The bot is told it succeeded either way, so it learns nothing. */
+  if (verdict.isCertain) {
+    console.warn(
+      `Dropped certain spam (score ${verdict.score}): ${verdict.reasons.join(", ")}`
+    );
+    return {
+      status: "success",
+      message:
+        "Thanks for reaching out. One of our representatives will get back to you shortly.",
+      errors: {},
+      values: initialContactState.values,
+      terms: false,
+    };
+  }
+
   if (verdict.isSpam) {
     console.warn(
       `Quarantined suspected spam (score ${verdict.score}): ${verdict.reasons.join(", ")}`

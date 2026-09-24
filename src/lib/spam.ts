@@ -5,7 +5,15 @@ type Lead = Record<ContactField, string>;
 export type SpamVerdict = {
   score: number;
   reasons: string[];
+  /** Score reached the threshold: keep it out of the client's inbox. */
   isSpam: boolean;
+  /**
+   * A combination no human produces, so the submission can be dropped
+   * without review. Deliberately NOT derived from the score: a high score
+   * can be built from weak signals stacking up, and a silent drop of a real
+   * enquiry is the one failure this filter must never make.
+   */
+  isCertain: boolean;
 };
 
 /** At or above this, the lead is quarantined away from the client's inbox. */
@@ -72,6 +80,8 @@ export function scoreSpam(
 ): SpamVerdict {
   const reasons: string[] = [];
   let score = 0;
+  let noSpaces = false;
+  let randomCasing = false;
 
   const add = (points: number, reason: string) => {
     score += points;
@@ -93,12 +103,14 @@ export function scoreSpam(
   const message = values.message.trim();
   // A multi-character message with no whitespace at all is a token, not prose.
   if (message.length > 8 && !/\s/.test(message)) {
+    noSpaces = true;
     add(40, "message has no spaces");
   }
   if (message.length > 8 && vowelRatio(message) < 0.22) {
     add(25, "message vowel ratio low");
   }
   if (hasRandomCasing(message)) {
+    randomCasing = true;
     add(25, "message has random casing");
   }
   /* Weighted to stand alone: an unsolicited link in a first enquiry to an
@@ -127,5 +139,17 @@ export function scoreSpam(
     add(25, `email local part has ${dots} dots`);
   }
 
-  return { score, reasons, isSpam: score >= SPAM_THRESHOLD };
+  /* Certain-bot signatures. Each is a conjunction of independent signals:
+     - A message that is one unbroken token AND flips case at random, like
+       "KRwkvGlgwqxQJyHdOyr". Either alone has an innocent explanation (a
+       one-word enquiry; a product code); both together is how this bot
+       family writes, and no person does.
+     - The honeypot AND an impossible fill time. The honeypot alone is not
+       enough — a browser extension that autofills hidden fields would
+       otherwise get a real person silently dropped. */
+  const honeypotFilled = Boolean(opts.honeypot.trim());
+  const impossiblyFast = opts.elapsedMs !== null && opts.elapsedMs < IMPOSSIBLE_FILL_MS;
+  const isCertain = (noSpaces && randomCasing) || (honeypotFilled && impossiblyFast);
+
+  return { score, reasons, isSpam: score >= SPAM_THRESHOLD || isCertain, isCertain };
 }
